@@ -47,4 +47,38 @@ struct Grid {
         return Coordinate(x: randX, y: randY)
     }
     
+    func randomCoordinate(near coordinate: Coordinate) -> Coordinate {
+        let randDX = Int.random(in: -1 ..< 2)
+        let randDY = Int.random(in: -1 ..< 2)
+        
+        let newX = coordinate.x + randDX
+        let newY = coordinate.y + randDY
+        
+        let newCoordinate = Coordinate(x: newX, y: newY)
+        
+        guard newCoordinate != coordinate else {
+            return randomCoordinate(near: coordinate)
+        }
+        
+        guard self[newCoordinate] != nil else {
+            return randomCoordinate(near: coordinate)
+        }
+        
+        return newCoordinate
+    }
+    
+    func randomGroundCoordinate(near coordinate: Coordinate) -> Coordinate? {
+        var maxRetries = 3
+        
+        while maxRetries > 0 {
+            let rand = randomCoordinate(near: coordinate)
+            
+            if self[rand] is Ground {
+                return rand
+            }
+            maxRetries -= 1
+        }
+        return nil
+    }
+    
 }

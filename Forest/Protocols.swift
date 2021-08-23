@@ -13,4 +13,9 @@ protocol Plottable {
 
 protocol Drawable {
     var color: CGColor { get }
+    var emoji: String { get }
+}
+
+protocol Moveable {
+    var moveDistance: Int { get }
 }

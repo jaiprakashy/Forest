@@ -7,6 +7,8 @@
 
 import UIKit
 
-struct Woodcutter: Plottable, Drawable {
+struct Woodcutter: Plottable, Drawable, Moveable {
     var color: CGColor = UIColor.woodcutterColor.cgColor
+    var emoji: String = "🧑🏼‍🚒"
+    var moveDistance = 3
 }

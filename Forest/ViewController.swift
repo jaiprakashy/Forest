@@ -17,12 +17,11 @@ class ViewController: UIViewController {
     }
     
     func setupForestView() {
-        let grid = Grid(size: 50)
+        let grid = Grid(size: 30)
         let forest = Forest(grid: grid)
         forestView.backgroundColor = UIColor.groundColor
         forestView.forest = forest
+        forestView.autoRun()
     }
-
-
 }
 

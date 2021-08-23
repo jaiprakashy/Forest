@@ -29,12 +29,19 @@ class ForestView: UIView {
                 let xOrigin = CGFloat(coordinate.x) * cellSize
                 let yOrigin = CGFloat(coordinate.y) * cellSize
                 let origin = CGPoint(x: xOrigin, y: yOrigin)
-                let size = CGSize(width: cellSize, height: cellSize)
-                let smallRect = CGRect(origin: origin, size: size)
                 
-                context?.setFillColor(drawableObject.color)
-                context?.fill(smallRect)
+                let string = NSString(string: drawableObject.emoji)
+                let font = UIFont.systemFont(ofSize: CGFloat(cellSize))
+                string.draw(at: origin, withAttributes: [.font: font])
             }
+        }
+    }
+    
+    func autoRun() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.forest.update()
+            self.setNeedsDisplay()
+            self.autoRun()
         }
     }
 
